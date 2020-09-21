@@ -1,6 +1,3 @@
-
-import static org.junit.Assert.assertEquals;
-
 // wpilib hal
 import edu.wpi.first.hal.HAL;
 
@@ -26,7 +23,7 @@ public class DriveTest
     }
 
     @Test
-    public void SetPowerSetsPower()
+    public void SetPowerSetsMotors()
     {
         Drive drive = new Drive();
         drive.setPower(1.0,-1.0);
@@ -35,6 +32,28 @@ public class DriveTest
         assert(drive.getLeftMotor2Power() == -1.0);
         assert(drive.getRightMotor1Power() == 1.0);
         assert(drive.getRightMotor2Power() == 1.0);
+
+        drive.close();
+    }
+
+    @Test
+    public void TestDeadzone()
+    {
+        Drive drive = new Drive();
+
+        drive.setPower( 0.08,-0.08);
+        assert(drive.getLeftMotor1Power() == 0.0);
+        assert(drive.getLeftMotor2Power() == 0.0);
+        assert(drive.getRightMotor1Power() == 0.0);
+        assert(drive.getRightMotor2Power() == 0.0);
+
+        drive.setPower( 0.11,-0.11);
+        assert(drive.getLeftMotor1Power() == -0.11);
+        assert(drive.getLeftMotor2Power() == -0.11);
+        assert(drive.getRightMotor1Power() == 0.11);
+        assert(drive.getRightMotor2Power() == 0.11);
+
+        drive.close();
     }
 
 }

@@ -24,6 +24,20 @@ public class Drive
 
     public void setPower ( double rPower, double lPower )
     {
+        final double THRESH = 0.1;
+
+        if( rPower <= THRESH &&
+            rPower >= -THRESH )
+        {
+            rPower = 0.0;
+        }
+        
+        if( lPower <= THRESH &&
+            lPower >= -THRESH )
+        {
+            lPower = 0.0;
+        }
+
         rMotor1.set( rPower );
         rMotor2.set( rPower );
         lMotor1.set( lPower );
@@ -50,5 +64,13 @@ public class Drive
     public double getRightMotor2Power()
     {
         return rMotor2.get();
+    }
+
+    public void close()
+    {
+        rMotor1.close();
+        rMotor2.close();
+        lMotor1.close();
+        lMotor2.close();
     }
 }
