@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.revrobotics.CANSparkMax;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Climb
 {
