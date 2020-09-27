@@ -109,7 +109,7 @@ public class Robot extends TimedRobot {
     drive.updatePower();
     if(controller.getStartButton() || controller.getAButton())
     {
-      if(controller.getStartbutton())
+      if(controller.getStartButton())
       {
         climb.elevatorUp();
       }
@@ -128,16 +128,16 @@ public class Robot extends TimedRobot {
     {
       if(controller.getBButton())
       {
-        climb.WinchClimb();
+        climb.winchClimb();
       }
       else
       {
-        climb.Winchreverse();
+        climb.winchReverse();
       }
     }
     else
     {
-      climb.WinchStop();
+      climb.winchStop();
     }
 
 
