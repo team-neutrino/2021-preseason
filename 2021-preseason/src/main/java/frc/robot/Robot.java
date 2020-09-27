@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.Climb;
+
 import static edu.wpi.first.wpilibj.XboxController.Button;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,14 +28,10 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
   private Drive drive;
-  private Climb climb;
-  private XboxController controller;
-  private JoystickButton start; //not sure if these 4 buttons are needed cause in the API, there are methods to check fot the value of the buttons in the xboxcontroller Class/ Not used rn but keeping it here just in case
-  private Joystickbutton back;
-  private JoystickButton A;
-  private JoystickButton B;
+  private Climb climb; //coded in presentation
+  private XboxController controller; //coded inpresentation 
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -44,13 +42,9 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    climb = new climb();
+    climb = new Climb();
     drive = new Drive();
-    controller = new Xboxcontroller(1);
-    start = new JoystickButton(controller, Button.kStart.value); 
-    back = new JoystickButton(controller, Button.kStart.value);
-    A = new JoystickButton(controller, Button.kA.value);
-    B = new JoystickButton(controller, Button.kB.valuie);
+    controller = new XboxController(1);
   }
 
   /**
@@ -106,34 +100,30 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    drive.updatePower();
-    if(controller.getStartButton() || controller.getAButton())
-    {
-      if(controller.getStartButton())
-      {
-        climb.elevatorUp();
-      }
-      else
-      {
-        climb.elevatorDown();
-      }
-    }
 
+    //this if else statement coded in presentation 
+    drive.updatePower();
+  
+    if(controller.getStartButton())
+    {
+       climb.elevatorUp();
+    }
+    else if(controller.getAButton())
+    {
+       climb.elevatorDown();
+    }
     else
     {
-      climb.elevatorStop();
+       climb.elevatorStop();
     }
 
-    if(controller.getBButton() || controller.getBackButton())
+    if(controller.getBButton())
     {
-      if(controller.getBButton())
-      {
-        climb.winchClimb();
-      }
-      else
-      {
-        climb.winchReverse();
-      }
+      climb.winchClimb();
+    }
+    else if(controller.getBackButton())
+    {
+      climb.winchReverse();
     }
     else
     {

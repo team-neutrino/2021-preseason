@@ -5,18 +5,23 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Climb
 {
-    
+    //coded in presentation
     private TalonSRX ClimbElevator;
+    
+    //coded in presentation
     private CANSparkMax ClimbWinch;
 
     public Climb()
     {
+        //coded in presentation
         ClimbElevator = new TalonSRX(0);
+
+        //coded in presentation 
         ClimbWinch = new CANSparkmax(1, MotorType.kBrushless);
 
     }
 
-    //code this method during demonstration
+    //coded during demonstration
     public void elevatorUp()
     {
         ClimbElevator.set(ControlMode.PercentOutput, 0.5);
@@ -37,7 +42,7 @@ public class Climb
         ClimbWinch.set(0);
     }
 
-    
+    //coded during presentation
     public void winchClimb()
     {
         ClimbWinch.set(0.5);
