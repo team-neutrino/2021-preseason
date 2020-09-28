@@ -18,10 +18,26 @@ public class Drive
         lJoy = new Joystick(1);
         rMotor1 = new PWMSparkMax(0);
         lMotor1 = new PWMSparkMax(1);
+        rMotor2 = new PWMSparkMax(2);
+        lMotor2 = new PWMSparkMax(3);
     }
 
     public void setPower ( double rPower, double lPower )
     {
+        final double THRESH = 0.1;
+
+        if( rPower <= THRESH &&
+            rPower >= -THRESH )
+        {
+            rPower = 0.0;
+        }
+        
+        if( lPower <= THRESH &&
+            lPower >= -THRESH )
+        {
+            lPower = 0.0;
+        }
+
         rMotor1.set( rPower );
         rMotor2.set( rPower );
         lMotor1.set( lPower );
@@ -31,5 +47,30 @@ public class Drive
     public void updatePower()
     {
         setPower( rJoy.getY(), lJoy.getY() );
+    }
+
+    public double getLeftMotor1Power()
+    {
+        return lMotor1.get();
+    }
+    public double getLeftMotor2Power()
+    {
+        return lMotor2.get();
+    }
+    public double getRightMotor1Power()
+    {
+        return rMotor1.get();
+    }
+    public double getRightMotor2Power()
+    {
+        return rMotor2.get();
+    }
+
+    public void close()
+    {
+        rMotor1.close();
+        rMotor2.close();
+        lMotor1.close();
+        lMotor2.close();
     }
 }
