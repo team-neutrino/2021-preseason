@@ -1,5 +1,5 @@
 package frc.robot;
-
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -35,7 +35,7 @@ public class Climb
 
     public void elevatorStop()
     {
-        Climbelevator.set(0);
+        m_climb_elevator.set(0);
     }
 
     public void winchStop()
