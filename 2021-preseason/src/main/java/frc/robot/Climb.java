@@ -2,34 +2,35 @@ package frc.robot;
 
 import com.revrobotics.CANSparkMax;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Climb
 {
     //coded in presentation
-    private TalonSRX ClimbElevator;
+    private TalonSRX m_climb_elevator;
     
     //coded in presentation
-    private CANSparkMax ClimbWinch;
+    private CANSparkMax m_climb_winch;
 
     public Climb()
     {
         //coded in presentation
-        ClimbElevator = new TalonSRX(0);
+     m_climb_elevator = new TalonSRX(2);
 
         //coded in presentation 
-        ClimbWinch = new CANSparkmax(1, MotorType.kBrushless);
+        m_climb_winch = new CANSparkmax(3, MotorType.kBrushless);
 
     }
 
     //coded during demonstration
     public void elevatorUp()
     {
-        ClimbElevator.set(ControlMode.PercentOutput, 0.5);
+     m_climb_elevator.set(ControlMode.PercentOutput, 0.5);
     }
 
     public void elevatorDown()
     {
-        ClimbElevator.set(ControlMode.PercentOutput, -0.5);
+     m_climb_elevator.set(ControlMode.PercentOutput, -0.5);
     }
 
     public void elevatorStop()
@@ -39,17 +40,17 @@ public class Climb
 
     public void winchStop()
     {
-        ClimbWinch.set(0);
+        m_climb_winch.set(0);
     }
 
     //coded during presentation
     public void winchClimb()
     {
-        ClimbWinch.set(0.5);
+        m_climb_winch.set(0.5);
     }
 
     public void winchReverse()
     {
-        ClimbWinch.set(-0.5);
+        m_climb_winch.set(-0.5);
     }
 }
