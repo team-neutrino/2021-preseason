@@ -18,7 +18,7 @@ public class Climb
         m_climb_elevator = new TalonSRX(2);
 
         //coded in presentation 
-        m_climb_winch = new CANSparkmax(3, MotorType.kBrushless);
+        m_climb_winch = new CANSparkMax(3, MotorType.kBrushless);
 
     }
 
@@ -35,7 +35,7 @@ public class Climb
 
     public void elevatorStop()
     {
-        m_climb_elevator.set(0);
+        m_climb_elevator.set(ControlMode.PercentOutput, 0);
     }
 
     public void winchStop()
