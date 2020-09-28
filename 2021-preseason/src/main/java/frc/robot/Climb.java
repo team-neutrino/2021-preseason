@@ -15,7 +15,7 @@ public class Climb
     public Climb()
     {
         //coded in presentation
-     m_climb_elevator = new TalonSRX(2);
+        m_climb_elevator = new TalonSRX(2);
 
         //coded in presentation 
         m_climb_winch = new CANSparkmax(3, MotorType.kBrushless);
