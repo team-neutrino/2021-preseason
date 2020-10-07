@@ -1,24 +1,25 @@
 package frc.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.revrobotics.CANSparkMax;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+//import com.revrobotics.CANSparkMax;
+//import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.PWMSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Climb
 {
     //coded in presentation
-    private TalonSRX m_climb_elevator;
+    private PWMSparkMax m_climb_elevator;
     
     //coded in presentation
-    private CANSparkMax m_climb_winch;
+    private PWMSparkMax m_climb_winch;
 
     public Climb()
     {
         //coded in presentation
-        m_climb_elevator = new TalonSRX(2);
+        m_climb_elevator = new PWMSparkMax(2);
 
         //coded in presentation 
-        m_climb_winch = new CANSparkMax(3, MotorType.kBrushless);
+        m_climb_winch = new PWMSparkMax(3);
 
     }
 
