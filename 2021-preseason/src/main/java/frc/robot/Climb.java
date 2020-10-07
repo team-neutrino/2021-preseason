@@ -54,4 +54,13 @@ public class Climb
     {
         m_climb_winch.set(-0.5);
     }
+    public double getelevatormotor(){
+
+        return m_climb_elevator.get();
+    }
+    public void close() {
+        m_climb_elevator.close();
+        m_climb_winch.close();
+    }
+
 }
