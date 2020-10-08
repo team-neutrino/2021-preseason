@@ -26,17 +26,17 @@ public class Climb
     //coded during demonstration
     public void elevatorUp()
     {
-     m_climb_elevator.set(PercentOutput, 0.5);
+     m_climb_elevator.set(0.5);
     }
 
     public void elevatorDown()
     {
-     m_climb_elevator.set(PercentOutput, -0.5);
+     m_climb_elevator.set(-0.5);
     }
 
     public void elevatorStop()
     {
-        m_climb_elevator.set(PercentOutput, 0);
+        m_climb_elevator.set(0);
     }
 
     public void winchStop()
