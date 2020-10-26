@@ -3,27 +3,81 @@ package frc.robot;
 import edu.wpi.first.wpilibj.PWMSparkMax;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 
 public class Turret
 {
     private PWMSparkMax m_turret;
     private XboxController m_Xbox;
+    private DutyCycleEncoder m_Encoder;
+    
 
     public Turret()
     {
         m_turret = new PWMSparkMax( 9 );
         m_Xbox = new XboxController(2);
+        m_Encoder = new DutyCycleEncoder(8);
     }
 
     public void leftTrigger(){
         double value = m_Xbox.getTriggerAxis(Hand.kLeft);
+        double position = m_Encoder.get();
 
+        if(position <= -90.0){
+            m_turret.setSpeed(0.0);
+        }
+        else{
+            if (value> 0.8){
+                m_turret.setSpeed(-1.0);
+            }
+            else if (value <= 0.8 && value > 0.1){
+                m_turret.setSpeed(-0.5);
+            }
+            else{
+                m_turret.setSpeed(0.0);
+            }
+    }
+
+    }
+
+    public void rightTrigger(){
+        double value = m_Xbox.getTriggerAxis(Hand.kRight);
+        double position = m_Encoder.get();
+        if(position >= 90.0){
+            m_turret.setSpeed(0.0);
+        }
+        else{
+            
+            if (value> 0.8){
+                m_turret.setSpeed(1.0);
+            }
+            else if (value <= 0.8 && value > 0.1){
+                m_turret.setSpeed(0.5);
+            }
+            else{
+                m_turret.setSpeed(0.0);
+            }
+        }
+    }
+
+    public void returnTurret(){
+        boolean pressed = m_Xbox.getBumper(Hand.kLeft)||m_Xbox.getBumper(Hand.kRight);
+        double position = m_Encoder.get();
+
+        if (pressed && position<-0.1){
+            m_turret.setSpeed(1.0);
+        }
+        else if (pressed && position>0.1){
+            m_turret.setSpeed(-1.0);
+        }
+        else{
+            m_turret.setSpeed(0.0);
+        }
         
-        
+    }
     }
 
     
-}
 
 /* 
 Pseudocode:
