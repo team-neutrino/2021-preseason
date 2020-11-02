@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
   private Drive drive;
   private Climb climb; //coded in presentation
   private XboxController controller; //coded inpresentation 
+  private Intake intake;
 
 
   /**
@@ -43,6 +44,7 @@ public class Robot extends TimedRobot {
     climb = new Climb();
     drive = new Drive();
     controller = new XboxController(1);
+    intake = new Intake();
   }
 
   /**
@@ -127,7 +129,7 @@ public class Robot extends TimedRobot {
     {
       climb.winchStop();
     }
-
+    intake.doIntake();
 
   }
 
