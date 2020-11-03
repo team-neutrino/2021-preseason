@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Climb;
-
+import frc.robot.Intake;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private Drive drive;
   private Climb climb; //coded in presentation
+  private Intake intake;
   private XboxController controller; //coded inpresentation 
 
 
@@ -43,6 +44,7 @@ public class Robot extends TimedRobot {
     climb = new Climb();
     drive = new Drive();
     controller = new XboxController(1);
+    intake = new Intake();
   }
 
   /**
@@ -127,7 +129,8 @@ public class Robot extends TimedRobot {
     {
       climb.winchStop();
     }
-
+      //This might not work D:
+    intake.doIntake();
 
   }
 
