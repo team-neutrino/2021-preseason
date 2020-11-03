@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Climb;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   private Drive drive;
   private Climb climb; //coded in presentation
   private XboxController controller; //coded inpresentation 
+  private Turret turret; 
 
 
   /**
@@ -43,6 +45,7 @@ public class Robot extends TimedRobot {
     climb = new Climb();
     drive = new Drive();
     controller = new XboxController(1);
+    turret = new Turret();
   }
 
   /**
@@ -126,6 +129,23 @@ public class Robot extends TimedRobot {
     else
     {
       climb.winchStop();
+    }
+
+    double valueL = controller.getTriggerAxis(Hand.kLeft);
+    double valueR = controller.getTriggerAxis(Hand.kRight);
+    boolean pressed = controller.getBumper(Hand.kLeft)||controller.getBumper(Hand.kRight);
+
+    if(valueL > 0.1)
+    {
+      turret.leftTrigger(valueL);
+    }
+    else if(valueR > 0.1)
+    {
+      turret.rightTrigger(valueR);
+    }
+    else if(pressed)
+    {
+      turret.returnTurret(pressed);
     }
 
 
